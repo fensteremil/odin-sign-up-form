@@ -1,0 +1,197 @@
+@import url(https://fonts.bunny.net/css?family=caesar-dressing:400);
+
+:root {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+
+    --color-light: #fafafa;
+    --color-dark: #333333;
+    --color-light-focus: #efff97;
+    --color-borders: #e6e6e6;
+    --color-accent-one: #d485a0;
+    --color-accent-two: #36422F;
+    --color-positive: #6ca34d;
+    --color-negative: rgb(196, 95, 78);
+
+    --main-spacing: clamp(1rem, 0.5rem + 3vw, 15rem);
+    --border-radius: 6px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+
+    min-height: 100vh;
+    background-color: #eeeeee;
+}
+
+header {
+    background: url(media/muneeb-syed-bg.jpg) no-repeat;
+
+    flex: 1 2 350px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    flex: 0.75;
+    padding: 1rem;
+
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    color: var(--color-light);
+    font-family: "Caesar Dressing", display;
+    font-size: clamp(3rem, calc(2rem + 10vw), 10rem);
+
+    &::before {
+        position: relative;
+
+        content: "";
+        background-image: url(media/odin-lined.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 1.2em;
+        height: 1.2em;
+    }
+}
+
+header #img-credit {
+    padding: 1rem;
+    color: var(--color-light);
+
+    & a:link,
+    a:visited {
+        color: var(--color-light);
+    }
+
+    & a:focus,
+    a:hover,
+    a:active {
+        color: var(--color-light-focus);
+    }
+}
+
+main {
+    color: var(--color-dark);
+
+    flex: 2 1 350px;
+    align-self: center;
+}
+
+p {
+    max-inline-size: 45ch;
+    font-size: clamp(1rem, 0.75rem + 1vw, 1.5rem);
+}
+
+#introduction p {
+    margin: 1em 0;
+}
+
+#introduction,
+form>*:not(#form-highlight) {
+    margin: 1rem var(--main-spacing);
+}
+
+#form-highlight {
+    margin: 1.5rem 0;
+    padding: calc(var(--main-spacing) / 2) var(--main-spacing);
+    background-color: white;
+}
+
+#form-inputs {
+    width: min(100%, 600px);
+
+    display: flex;
+    flex-flow: row wrap;
+    column-gap: 3em;
+}
+
+#form-inputs>div {
+    flex: 1;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+label {
+    margin-top: 1em;
+
+    color: var(--color-accent-two);
+    font-size: 0.75rem;
+    letter-spacing: 0.2ch;
+    text-transform: uppercase;
+}
+
+input {
+    outline: none;
+    border: 1px solid var(--color-borders);
+    border-radius: var(--border-radius);
+    padding: 0.25rem 0.5rem;
+
+    font-size: 0.75rem;
+    line-height: 1.5;
+
+    &:focus {
+        border-color: var(--color-accent-two);
+        box-shadow: 0 0 4px var(--color-accent-two);
+    }
+
+    &:user-valid {
+        border-color: var(--color-positive);
+    }
+
+    &:user-invalid {
+        border-color: var(--color-negative);
+    }
+}
+
+button {
+    padding: 1rem 1.5rem;
+
+    background-color: var(--color-accent-two);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--color-light);
+    font-size: clamp(1rem, 0.5rem + 0.5vw, 1.5rem);
+    font-weight: bold;
+
+    &:active,
+    &:hover,
+    &:focus {
+        background-color: var(--color-accent-one);
+        cursor: pointer;
+    }
+}
+
+#login-prompt a {
+    font-weight: bold;
+    text-decoration: none;
+
+    &:link,
+    &:visited {
+        color: var(--color-accent-one);
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+        color: var(--color-accent-two);
+    }
+}
