@@ -15,8 +15,12 @@
     --color-positive: #6ca34d;
     --color-negative: rgb(196, 95, 78);
 
-    --main-spacing: clamp(1rem, 0.5rem + 3vw, 15rem);
+    --spacing-vertical: clamp(1.5rem, 0.75rem + 3vh, 15rem);
+    --spacing-horizontal: clamp(1rem, 0.5rem + 3vw, 15rem);
+    --main-spacing: var(--spacing-vertical) var(--spacing-horizontal);
     --border-radius: 6px;
+    --wrap-breakpoint: 800px;
+    /* needs to be the same as media query */
 }
 
 *,
@@ -38,8 +42,9 @@ body {
 
 header {
     background: url(media/muneeb-syed-bg.jpg) no-repeat;
+    background-size: cover;
 
-    flex: 1 2 350px;
+    flex: 1 2 calc(var(--wrap-breakpoint) / 2);
 
     display: flex;
     flex-flow: column nowrap;
@@ -91,47 +96,45 @@ header #img-credit {
 main {
     color: var(--color-dark);
 
-    flex: 2 1 350px;
+    flex: 1 1 calc(var(--wrap-breakpoint) / 2);
     align-self: center;
 }
 
 p {
-    max-inline-size: 45ch;
+    max-inline-size: max(45ch, var(--wrap-breakpoint));
     font-size: clamp(1rem, 0.75rem + 1vw, 1.5rem);
 }
 
 #introduction p {
-    margin: 1em 0;
+    margin: var(--main-spacing);
 }
 
-#introduction,
-form>*:not(#form-highlight) {
-    margin: 1rem var(--main-spacing);
-}
-
-#form-highlight {
-    margin: 1.5rem 0;
-    padding: calc(var(--main-spacing) / 2) var(--main-spacing);
+form>#form-highlighted {
+    margin: var(--spacing-vertical) 0;
+    padding: var(--main-spacing);
     background-color: white;
 }
 
-#form-inputs {
-    width: min(100%, 600px);
+form>#form-highlighted>#form-inputs {
+    max-width: max(45ch, var(--wrap-breakpoint));
+    margin-top: calc(var(--spacing-vertical) / 2);
 
     display: flex;
     flex-flow: row wrap;
-    column-gap: 3em;
-}
+    justify-content: flex-start;
+    column-gap: var(--spacing-horizontal);
+    row-gap: 1rem;
 
-#form-inputs>div {
-    flex: 1;
+    &>div {
+        flex: 40%;
 
-    display: flex;
-    flex-flow: column nowrap;
+        display: flex;
+        flex-flow: column nowrap;
+    }
 }
 
 label {
-    margin-top: 1em;
+    margin-bottom: 0.25rem;
 
     color: var(--color-accent-two);
     font-size: 0.75rem;
@@ -145,7 +148,6 @@ input {
     border-radius: var(--border-radius);
     padding: 0.25rem 0.5rem;
 
-    font-size: 0.75rem;
     line-height: 1.5;
 
     &:focus {
@@ -162,7 +164,12 @@ input {
     }
 }
 
+button, #login-prompt {
+    margin: calc(var(--spacing-vertical) / 2) var(--spacing-horizontal);
+}
+
 button {
+    display: block;
     padding: 1rem 1.5rem;
 
     background-color: var(--color-accent-two);
@@ -193,5 +200,11 @@ button {
     &:hover,
     &:focus {
         color: var(--color-accent-two);
+    }
+}
+
+@media screen and (max-width: 799px) {
+    body {
+        min-height: auto;
     }
 }
